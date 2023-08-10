@@ -1,0 +1,8 @@
+mvn clean compile --quiet
+  Cleans class files, compiles the project. Maven do not log its messages.
+
+mvn clean compile --log-file log.txt
+  Cleans class files, compiles the project. Maven logs its messages to the log.txt file.
+  
+mvn exec:java --quiet
+  Compiles the projects and executes it.  Maven do not log its messages. It requires org.codehaus.mojo/exec-maven-plugin.
