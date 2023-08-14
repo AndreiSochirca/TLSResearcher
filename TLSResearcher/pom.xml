@@ -5,13 +5,21 @@
     <packaging>jar</packaging>
     <version>0.0.1</version>
     
-    <name>TLS Researcher</name>
+    <name>TLSResearcher</name>
     <description>Research TLS ClientHello message</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    
+    <dependencies>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna-platform</artifactId>
+            <version>5.13.0</version>
+        </dependency>
+    </dependencies>
+    
     <build>
         <plugins>
             <plugin>
@@ -49,7 +57,15 @@
                                 <manifest>
                                     <mainClass>com.smaxe.os.app.tlsresearcher.TLSResearcher</mainClass>
                                 </manifest>
+                                <manifestEntries>
+                                    <Multi-Release>true</Multi-Release>
+                                </manifestEntries>
                             </archive>
+                            <finalName>TLSResearcher</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
                         </configuration>
                     </execution>
                 </executions>
@@ -64,5 +80,5 @@
             </resource>
         </resources>
     </build>
-
+    
 </project>
