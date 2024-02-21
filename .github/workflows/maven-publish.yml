@@ -24,8 +24,8 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       
-    - name: Change permission
-      run: chmod +x pom.xml
+    - name: Print current directory
+      run: pwd
     
     - name: Build with Maven
       run: mvn -B package --file pom.xml
