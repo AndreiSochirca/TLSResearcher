@@ -35,4 +35,4 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: TLSResearcher/target/TLSResearcher.jar
         asset_name: PackageDemo-1.0.jar
-          asset_content_type: application/octet-stream
+        asset_content_type: application/octet-stream
