@@ -25,3 +25,14 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file TLSResearcher/pom.xml
+      
+    - name: Upload artifact to release
+      if: success()
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: TLSResearcher/target/TLSResearcher.jar
+        asset_name: PackageDemo-1.0.jar
+          asset_content_type: application/octet-stream
