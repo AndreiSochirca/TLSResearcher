@@ -27,12 +27,11 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file TLSResearcher/pom.xml
 
-
-#    - name: Check jpackage availability
-#      run: jpackage --type exe --input TLSResearcher/target/ --dest build/win/ 
-#        --name TLSResearcher --app-version 1.0 --vendor "SuperVndo"
-#        --main-jar TLSResearcher.jar --main-class com.smaxe.os.app.tlsresearcher.TLSResearcher 
-#        --win-console
+ 
+    - name: Check jpackage availability
+      run: jpackage --type dmg --input TLSResearcher/target/ --dest build/mac/ 
+        --name TLSResearcher --app-version 1.0 --vendor "SuperVndo"
+        --main-jar TLSResearcher.jar --main-class com.smaxe.os.app.tlsresearcher.TLSResearcher 
 
 #    - name: List contents of build/linux directory
 #      run: ls -l build/linux
@@ -41,5 +40,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: mac-release
-        path: TLSResearcher/target/*
+        path: build/mac/*
 
