@@ -29,10 +29,17 @@ jobs:
     - name: Check jpackage availability
       run: jpackage --input TLSResearcher/target/ --name TLSResearcher --main-jar TLSResearcher.jar --main-class com.smaxe.os.app.tlsresearcher.TLSResearcher --type deb --dest TLSResearcher/target/ --app-version 1.0 --vendor "SuperVndo"
 
-    - name: Try to find lib
-      run: cd TLSResearcher/target
-    - name: Enumerate
-      run: ls -l
+
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: nix-v1.0
+        release_name: DemoDo
+        draft: false
+        prerelease: false
     
     - name: Upload artifact to release
       if: success()
