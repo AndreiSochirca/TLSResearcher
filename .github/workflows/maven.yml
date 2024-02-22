@@ -23,14 +23,15 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        
     - name: Build with Maven
       run: mvn -B package --file TLSResearcher/pom.xml
 
-    - name: Check jpackage availability
-      run: jpackage --input TLSResearcher/target/ --name PackageDemo --main-jar TLSResearcher.jar --main-class com.smaxe.os.app.tlsresearcher.TLSResearcher --type deb --dest build/linux/ --app-version 1.0 --vendor "SuperVndo"
+#    - name: Check jpackage availability
+#      run: jpackage --input TLSResearcher/target/ --name PackageDemo --main-jar TLSResearcher.jar --main-class com.smaxe.os.app.tlsresearcher.TLSResearcher --type deb --dest build/linux/ --app-version 1.0 --vendor "SuperVndo"
 
-    - name: List contents of build/linux directory
-      run: ls -l build/linux
+#    - name: List contents of build/linux directory
+#      run: ls -l build/linux
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
