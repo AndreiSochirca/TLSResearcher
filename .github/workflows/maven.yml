@@ -27,8 +27,16 @@ jobs:
       run: mvn -B package --file TLSResearcher/pom.xml
 
     - name: Check jpackage availability
-      run: jpackage --input TLSResearcher/target/ --name TLSResearcher --main-jar TLSResearcher.jar --main-class com.smaxe.os.app.tlsresearcher.TLSResearcher --type deb --dest TLSResearcher/target/ --app-version 1.0 --vendor "SuperVndo"
+      run: jpackage --input TLSResearcher/target/ --name PackageDemo --main-jar TLSResearcher.jar --main-class com.smaxe.os.app.tlsresearcher.TLSResearcher --type deb --dest build/linux/ --app-version 1.0 --vendor "SuperVndo"
 
+    - name: List contents of build/linux directory
+      run: ls -l build/linux
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: PackageDemo-linux
+        path: build/linux/*
 
     - name: Create release
       id: create_release
@@ -36,8 +44,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: nix-v1.0
-        release_name: DemoDo
+        tag_name:  linux-v1.0
+        release_name: JpackageDemo-linux
         draft: false
         prerelease: false
     
@@ -48,6 +56,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: TLSResearcher/target/TLSResearcher.jar
-        asset_name: PackageDemo-1.0.jar
+        asset_path: build/linux/packagedemo_1.0-1_amd64.deb
+        asset_name: PackageDemo-linux.deb
         asset_content_type: application/octet-stream
