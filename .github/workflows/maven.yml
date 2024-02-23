@@ -31,6 +31,7 @@ jobs:
     - name: Check jpackage availability
       run: jpackage --type dmg --input TLSResearcher/target/ --dest build/mac/ 
         --name TLSResearcher --app-version 1.0 --vendor "SuperVndo"
+        --java-options "-Xms256M -Xmx1G"
         --main-jar TLSResearcher.jar --main-class com.smaxe.os.app.tlsresearcher.TLSResearcher 
 
 #    - name: List contents of build/linux directory
